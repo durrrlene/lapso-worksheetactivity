@@ -1,0 +1,104 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r name, echo = TRUE}```
+<!--upcase-->
+LETTERS <- c("A","B","C","D","E","F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+
+LETTERS
+<!--lowcase-->
+letters <- c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
+
+letters
+
+<!--11letters-->
+
+head(LETTERS, 11)
+
+
+<!--LETTERS-->
+<!--oddNumLetters-->
+
+indices <- c(1,3,5,7,9,11,13,15,17,19,21,23,25)
+
+oddNumLetters <- LETTERS[indices]
+print(oddNumLetters)
+
+<!--vowels-->
+
+indices <- c(1,5,9,15,21)
+vowels <- LETTERS[indices]
+print(vowels)
+
+
+<!--letters-->
+<!--tail-->
+
+tail(letters, 5)
+
+<!--16-23-->
+centletters <- letters[16:23]
+centletters
+
+
+  <!--#2-->
+<!--WITHOUT data.frame-->
+
+city <- c("Tuguegarao City", "Manila", "Iloilo", "Tacloban", "Samal Island", "Davao City")
+temp <- c(42, 39, 34, 34, 30, 27)
+
+city
+temp
+
+<!--WITH data.frame-->
+
+AprilTempRes <- data.frame (
+  city = c("Tuguegarao City", "Manila", "Iloilo", "Tacloban", "Samal Island", "Davao City"),
+  temp = c(42, 39, 34, 34, 30, 27)   
+)
+
+colnames(AprilTempRes) <- c("City", "Temperature")
+
+print(AprilTempRes)
+View(AprilTempRes)
+
+<!--gets output-->
+
+rows <- AprilTempRes[c(3, 4),]
+rows
+
+AprilTempRes <- (city)
+
+
+<!--max and min-->
+
+high_temp <- max(AprilTempRes)
+low_temp <- min(AprilTempRes)      
+
+high_temp
+low_temp
+
+
+
+<!--str()-->
+
+str(AprilTempRes)
+
+
+
+
+<!---------------------------MATRICES--------------------------->
+
+<!---matrix(c(5,6,7,4,3,2,1,2,3,7,8,9),nrow = 2)-->
+
+<!--1-->
+
+matrix(c(1:8, 11:14), ncol=4, nrow=3)    
+
+array(c(1:8, 11:14), c(3,4,2))
+
+
+
