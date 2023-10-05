@@ -1,0 +1,175 @@
+---
+title: "RWorksheet_markdown_Lapso#2"
+author: "Darlene Erl Lapso"
+date: "2023-10-05"
+output: html_document
+---
+
+
+### R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r 1a}
+neg5 <- c(-5:5)
+neg5
+
+```
+```{r 1b}
+x <- 1:7
+x
+```
+
+```{r 2a}
+one_three <- seq(1, 3, 0.2)
+one_three
+```
+
+```{r 3object}
+workers_age <- list(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27,
+                    22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 43, 53, 41, 51, 35,
+                    24,33, 41, 53, 40, 18, 44, 38, 41, 48, 27, 39, 19, 30, 61, 54, 58, 26,
+                    18)
+workers_age
+```
+```{r 3a}
+elmthr <- workers_age[3]
+elmthr
+elmfr <- workers_age[4]
+elmfr
+```
+
+```{r 3b}
+paste(elmthr, elmfr)
+```
+
+```{r 3c}
+new_workers_age <- workers_age[c(-4,-12)]
+print(new_workers_age)
+```
+```{r 4}
+x <- c("first"=3, "second"=0, "third"=9)
+x
+```
+
+```{r 4a-b}
+accessx <- x[c("first", "third")]
+accessx
+```
+
+```{r 5}
+x <- seq(-3,2)
+x 
+```
+
+```{r 5a-b}
+x[2] <- 0
+x
+```
+
+```{r 6a}
+dieselFuel <- data.frame(
+  Month = c("Jan", "Feb", "March", "April", "May", "June"),
+  liter = c("52.50", "57.25", "60.00", "65.00", "74.25", "54.00"),
+  purchase = c("25", "30", "40", "50", "10", "45")
+)
+colnames(dieselFuel) <- c("Month", "Price per Liter(PhP", "Purchase-quantity(Liters)")
+print(dieselFuel)
+
+```
+
+```{r 6b}
+wt_mean <- weighted.mean(dieselFuel$Jan, dieselFuel$Feb, dieselFuel$March, dieselFuel$Apr, dieselFuel$May, dieselFuel$June)
+wt_mean
+
+```
+
+```{r 7}
+datarivers <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers),
+                sd(rivers), min(rivers), max(rivers))
+datarivers
+```
+```{r 8a}
+powerRank <- c(1:13)
+celebName <- c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Spielberg", "Howard Stern", "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Springsteen", "Donald Trump", "Muhammad Ali")
+Pay <- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55)
+powerRank
+celebName
+Pay
+```
+```{r 8a.2}
+powerRank2 <- c(14:25, NA)
+celebName2 <- c("Paul McCartney", "George Lucas", "Elton John", "David Letterman", "Phil Mickelson", "J.K. Rowling", "Brad Pitt", "Peter Jackson", "Dr. Phil McGraw", "Jay Leno", "Celine Dion", "Kobe Bryant", NA)
+Pay2 <- c(40, 203, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31, NA)
+powerRank2
+celebName2
+Pay2
+```
+```{r 8b}
+celebName2[celebName2 == "J.K. Rowling"] <- "J.K. Rowling"
+powerRank2[celebName2 == "J.K. Rowling"] <- 15
+Pay2[celebName2 == "J.K. Rowling"] <- 90
+
+celebName2
+powerRank2
+Pay2
+```
+```{r 8c-d}
+#library(readr)
+#csv_file <- "PowerRanking.csv"
+#data <- read.csv(csv_file)
+
+#rowsTenTwen <- data[10:20, ]
+
+#save(rowsTenTwen, file = "Ranks.RData")
+
+#load("Ranks.RData")
+#View(rowsTenTwen)
+```
+
+```{r 9}
+#library(readxl)
+#ExcelData <- read_excel("hotels-vienna.xlsx")
+#ExcelData
+```
+
+```{r 9b}
+#dim(ExcelData)
+```
+```{r 9c}
+#ExcelData$country
+#ExcelData$neighbourhood
+#ExcelData$price
+#ExcelData$stars
+#ExcelData$accommodation_type
+#ExcelData$ratingta
+```
+
+```{r 9d}
+#save(ExcelData, file = "new.RData")
+#load("new.RData")
+```
+
+```{r 9e}
+#head(ExcelData, 6)
+#tail(ExcelData, 6)
+```
+```{r 10a}
+fruitsIate1 <- list("apple", "rambutan", "oranges", "grapes", "banana", 
+                   "mango", "avocado", "watermelon", "melon", "sarisa")
+fruitsIate1
+```
+```{r 10b}
+fruitsIate2 <- append(fruitsIate1, list("atis", "dragonfruit"))
+fruitsIate2
+```
+
+```{r 10c}
+fruitsIate3 <- append(fruitsIate1, list("pineapple", "kiwi", "coconut", "lychee", "strawberry"), after = 5)
+fruitsIate3
+```
+```{r 10d}
+fruitsIate3[c(-5, -10, -15)]
+```
