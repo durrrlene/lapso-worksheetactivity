@@ -1,169 +1,127 @@
----
-title: "RWorksheet_Lapso"
-author: "Darlene Erl Lapso"
-date: "2023-10-06"
-output: pdf_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-#USING VECTORS
-```{r 1}
+      #1
 LETTERS <- c("A","B","C","D","E","F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
 
 LETTERS
 
 letters <- c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
-letters
 
-```
-
-```{r 1a}
+#1a
 head(LETTERS, 11)
-```
 
-```{r 1b}
+#1b
 indices <- c(1,3,5,7,9,11,13,15,17,19,21,23,25)
 
 oddNumLetters <- LETTERS[indices]
 print(oddNumLetters)
-```
 
-```{r 1c}
+#1c
 indices <- c(1,5,9,15,21)
 vowels <- LETTERS[indices]
 print(vowels)
-```
 
-```{r 1d}
+#1d
 tail(letters, 5)
-```
 
-```{r 1e}
+#1e
 centletters <- letters[16:23]
 centletters
-```
 
-```{r 2a-b}
+#2a-b
 #withoutframe
 city <- c("Tuguegarao City", "Manila", "Iloilo", "Tacloban", "Samal Island", "Davao City")
 temp <- c(42, 39, 34, 34, 30, 27)
 
 city
 temp
-```
 
-```{r AtR}
+#2c
 AprilTempRes <- data.frame (
   city = c("Tuguegarao City", "Manila", "Iloilo", "Tacloban", "Samal Island", "Davao City"),
-  temp = c(42, 39, 34, 34, 30, 27)
-)   
-```
-
-```{r colnames}
+  temp = c(42, 39, 34, 34, 30, 27)   
+)
+#2d
 colnames(AprilTempRes) <- c("City", "Temperature")
 
 print(AprilTempRes)
-```
+View(AprilTempRes)
 
-```{r str}
+#2e
 str(AprilTempRes)
-```
 
-```{r rows}
+#2f
 rows <- AprilTempRes[c(3, 4),]
 rows
 
 AprilTempRes <- (city)
-```
 
-```{r 2_g}
+#2g
 high_temp <- max(AprilTempRes)
 low_temp <- min(AprilTempRes)      
 
 high_temp
 low_temp
-```
-
-#MATRICES
 
 
-```{r 2.a}
-firstMat <- matrix(c(1:8, 11:14), ncol=4, nrow=3)
-firstMat
-```
+#---------------------------------MATRICES--------------------------
+#2a
+firstMat <- matrix(c(1:8, 11:14), ncol=4, nrow=3)    
 
-```{r 2.b}
 #2b
 secMat <- firstMat * 2
 secMat
-```
 
-```{r 2c.d}
+#2c
 row2 <- secMat[2, ]
 row2
-```
 
-```{r 2.d}
+#2d
 colsthfr <- secMat[1:2, 3:4]
 colsthfr
-```
 
-```{r 2.e}
+#2e
 colstwthr <- secMat[3, 2:3]
 colstwthr
-```
 
-```{r 2.f}
+#2f
 colsfr <- secMat[, 4]
 colsfr
-```
 
-```{r 2.g}
+#2g
 colnames(secMat) <- c("uno", "dos", "tres", "quatro")
 rownames(secMat) <- c("isa", "dalawa", "tatlo")
-print(secMat)
-```
 
-```{r 2.h}
+print(secMat)
+
+#2h
 dim(firstMat) <- c(6, 2)
 firstMat
-```
 
-#ARRAYS
 
-```{r 3_}
+
+#---------------------------------ARRAYS--------------------------
+
+#3
 mainArray <- array(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1))
 mainArray
-```
 
-```{r 3.a}
+#3a
 repEach <- rep(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), c(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2))
 repEach
 
-#or 
-
+#or
 repEach <- rep(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), each = 2)
 repEach
-```
 
-```{r 3[withdim]}
+#3a[with dim]
 arrRow <- array(repEach, dim = c(2, 4, 3))
 arrRow
-```
 
-```{r 3b}
+#3b
 dim(arrRow)
-```
 
-```{r 3.c}
+#3c
 dimnames(arrRow) <- list(c("a", "b"), c("A", "B", "C", "D"), c("1st-Dimensional Array", "2nd-Dimensional Array", "3rd-Dimensional Array"))
 
 print(arrRow)
-```
 
 
