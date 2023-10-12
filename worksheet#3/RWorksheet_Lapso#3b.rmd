@@ -1,0 +1,169 @@
+---
+title: "RWorksheet_Lapso#3b.Rmd"
+author: "Darlene Erl Lapso"
+date: "2023-10-11"
+output: pdf_document
+---
+
+
+### R Markdown
+
+
+
+
+```{r household data}
+#1a
+HouseData <- data.frame(
+  Respondents = c(1:20),
+  Sex = c(2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2),
+  FathersOccupation = c(1, 3, 3, 3, 1, 2, 3, 1, 1, 1, 3, 2, 1, 3, 3, 1, 3, 1, 2, 1),
+  PersonsAtHome = c(5, 7, 3, 8, 5, 9, 6, 7, 8, 4, 7, 6, 4, 7, 8, 8, 3, 11, 7, 6),
+  SiblingsAtSchool = c(6, 4, 4, 1, 2, 1, 5, 3, 1, 2, 3, 2, 5, 5, 2, 1, 2, 5, 3, 2),
+  TypesofHouses = c(1, 2, 3, 1, 1, 3, 3, 1, 2, 3, 2, 3, 2, 2, 3, 3, 3, 3, 3, 2)
+)
+colnames(HouseData) <- c("Respondents", "Sex", "Fathers Occupation", "Persons at Home", "Siblings At School", "Types of Houses")
+HouseData
+```
+#1 So this data frame shows that there are 20 respondents on this data, and their sex were shown if Male>1, if Female>2. It also shows the occupation of their parents, how persons/siblings are at home/school, and what type of houses were they have.
+```{r summary}
+#1b
+summary(HouseData)
+```
+
+```{r mean}
+#1c
+meanSibs <- mean(HouseData$"Siblings At School")
+is_mean_5 <- abs(meanSibs - 5) < 0.01
+print(meanSibs)
+print(is_mean_5)
+```
+```{r 1dextract}
+#1d
+extractdata1 <- HouseData[1:2, ]
+print(extractdata1)
+```
+
+```{r 1eextract}
+#1e
+extractdata2 <- HouseData[c(3,5), c(2,4)]
+extractdata2
+```
+
+```{r 1fvartypeofhouse}
+#1f
+types_houses <- HouseData$`Types of Houses`
+print(types_houses)
+```
+```{r 1gmalesfarmer}
+#1g
+malesFarmer <- HouseData[HouseData$Sex == 1 & HouseData$`Fathers Occupation` == 1, ]
+print(malesFarmer)
+```
+```{r 1hfemaleseqfivesibs}
+#1h
+femalesSibs <- HouseData[HouseData$Sex == 2 & HouseData$`Siblings At School` >= 5, ]
+print(femalesSibs)
+```
+
+```{r 2df}
+#2
+df = data.frame(Ints=integer(),
+
+Doubles=double(), Characters=character(),
+Logicals=logical(),
+Factors=factor(),
+stringsAsFactors=FALSE)
+
+print("Structure of the empty dataframe:")
+print(str(df))
+```
+#2a This data frame creates an empty frame, with information of intergers, numbers, characters, and a logic. And another thing I observe on this line of codes, is that the title were put on the last part, it was possible pala, then after printing it, print the added data
+
+```{r 3csvdata}
+#3
+HouseholdData <- data.frame(
+  Respondents = c(1:10),
+  Sex = c("Male", "Female", "Female", "Male", "Male", "Female", "Female", "Male", "Female", "Male"),
+  `Fathers Occupation` = c(1, 2, 3, 3, 1, 2, 2, 3, 1, 3),
+  `Persons at Home` = c(5, 7, 3, 8, 6, 4, 4, 2, 11, 6),
+  `Siblings at School` = c(2, 3, 0, 5, 2, 3, 1, 2, 6, 2),
+  `Types of Houses` = c("Wood", "Congrete", "Congrete", "Wood", "Semi-congrete", "Semi-congrete", "Wood", "Semi-congrete", "Semi-congrete", "Congrete")
+)
+colnames(HouseholdData) <- c("Respondents", "Sex", "Fathers Occupation", "Persons at Home", "Siblings at School", "Types of Houses")
+HouseholdData
+
+```
+
+```{r 3}
+#3a
+library(readr)
+csv_file <- "HouseholdData.csv"
+write.csv(HouseholdData, file = csv_file)
+HouseholdData <- read.csv("HouseholdData.csv")
+```
+
+```{r 3b}
+#3b
+#convert Sex into integer.
+SextoInt <- factor(HouseholdData$Sex, labels = c("Male", "Female"))
+SextoInt <- as.integer(SextoInt)
+SextoInt
+```
+
+```{r 3c}
+#3c
+TypetoInt <- factor(HouseholdData$Types.of.Houses, labels = c("Wood" = 1, "Congrete" = 2, "Semi-congrete" = 3))
+TypetoInt <- as.integer(TypetoInt)
+TypetoInt
+```
+
+```{r 3d}
+#3d
+FathersOcctoInt <- factor(HouseholdData$Fathers.Occupation, labels = c("Farmer" = 1, "Driver" = 2, "Others" = 3))
+FathersOcctoInt <- as.integer(FathersOcctoInt)
+FathersOcctoInt
+```
+
+```{r 3e}
+#3e
+FemFathDriver <- HouseholdData[HouseholdData$Sex == "Female" & HouseholdData$Fathers.Occupation == 2, ]
+FemFathDriver
+```
+
+```{r 3f}
+#3f
+numSibs <- HouseholdData[(HouseholdData$Sex == "Male" | HouseholdData$Sex == "Female") & HouseholdData$Siblings.at.School >= 5, ]
+print(numSibs)
+```
+
+
+    
+    
+    
+    
+    
+    4 Interpret the graph
+    
+Sentiments per day can be used to track the overall mood of a group of people over time. It can also be used to identify changes in sentiment over time.
+
+On this graph it shows the "Sentiments Of Tweet Per Day", there are three category moods fluctuate on each day of the month; "Negative", "Neutral", "Positive".
+
+As what we can see on the figure given, most of the Sentiments tweeted were more on the negative,from the day of July 14th up to July 21. There may be times that all the sentiments bagged down, yet the survey of negative sentiments never decreases. Positive sentiments on the second and followed by the neutral sentiments on third. 
+The ratio of Positive and Neutral Sentiments cant even reach even the half results of the negative. People are complex and have different opinion on any thing. Sentiments change over time. 
+
+To wrap up, on the days given on this figure, Negative Sentiments has the most captive results over Positive and Neutral.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
