@@ -1,0 +1,91 @@
+---
+title: "RWorksheet_Lapso#4a.Rmd"
+author: "Darlene Erl Lapso"
+date: "2023-10-25"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r 1}
+install.packages("readxl")
+library(readxl)
+SHOE <- read_excel("SHOE.xlsx")
+SHOE
+##The excel I uploaded displays what is in the table.
+``` 
+
+```{r 1b}
+library(readxl)
+SHOE <- read_excel("SHOE.xlsx")
+males <- SHOE[SHOE$Gender...3 == "M", c("Shoe size...1", "Height...2")]
+females <- SHOE[SHOE$Gender...3 == "F", c("Shoe size...1", "Height...2")]
+
+```
+
+```{r 1c}
+mean(SHOE$`Shoe Size...1`)
+mean(SHOE$Height...2)
+```
+
+```{r 1d}
+#Yes, as the shoe sizes increases, the height increases
+```
+
+```{r 2}
+months_vector <- c("March","April","January","November","January",
+"September","October","September","November","August",
+"January","November","November","February","May","August", "July","December","August","August","September","November","February",
+"April")
+
+factor_months <- factor(months_vector)
+factor_months
+
+assign("factor_months_vector", factor_months)
+
+print(factor_months_vector)
+
+```
+
+```{r 3}
+summary(months_vector)
+summary(factor_months_vector)
+#Yes of course, so it is easy accessible the data basic information of the table given such as; its length, class, mode, and how many are the each elements.
+```
+
+```{r 4}
+factor_data <- 
+new_order_data <- factor(factor_data,levels = c("East","West","North"))
+print(new_order_data)
+```
+
+```{r 5}
+read.csv("import_march.csv")
+read.table("import_march.csv", header = TRUE, sep = ",", qoute = "\"", dec = ".", fill = TRUE)
+##NOT YET DONE!
+```
+
+```{r }
+number <- 1:50
+readline(prompt = "Enter a number from 1-50: ", number)
+if (number <= 50){
+  cat("TRUE - ", number)
+} else if (number > 50){
+  cat('“The number selected is beyond the range of 1 to 50”')
+} else {
+  print("Invalid Input")
+}
+```
+
+
+
+
+
+
+
+
+
