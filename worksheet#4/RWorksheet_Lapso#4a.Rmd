@@ -12,24 +12,41 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 
 ```{r 1}
-install.packages("readxl")
-library(readxl)
-SHOE <- read_excel("SHOE.xlsx")
-SHOE
-##The excel I uploaded displays what is in the table.
+Size_height <- data.frame(
+  Shoe_Size_1 = c(6.5, 9, 8.5, 8.5, 10.5, 7, 9.5, 9, 13, 7.5, 10.5, 8.5, 12, 10.5),
+  Height_1 = c(66, 68, 64.5, 65, 70, 64, 70, 71, 72, 64, 74.5, 67, 71, 71),
+  Gender_1 = c("F", "F", "F", "F", "M", "F", "F", "F", "M", "F", "M", "F", "M", "M"),
+  Shoe_Size_2 = c(13, 11.5, 8.5, 5, 10, 6.5, 7.5, 8.5, 10.5, 8.5, 10.5, 11, 9, 13),
+  Height_2 = c(77, 7, 59, 62, 72, 66, 64, 67, 73, 69, 72, 70, 69, 70),
+  Gender_2 = c("M", "M", "F", "F", "M", "F", "F", "M", "M", "F", "M", "M", "M", "M")
+)
+
+Size_height
 ``` 
 
 ```{r 1b}
-library(readxl)
-SHOE <- read_excel("SHOE.xlsx")
-males <- SHOE[SHOE$Gender...3 == "M", c("Shoe size...1", "Height...2")]
-females <- SHOE[SHOE$Gender...3 == "F", c("Shoe size...1", "Height...2")]
+males_subset <- subset(Size_height, Gender_1 == "M" | Gender_2 ==
+                         "M", select = c(Shoe_Size_1, Height_1, Shoe_Size_2, Height_2))
 
+print("Males Subset:")
+print(males_subset)
+
+females_subset <- subset(Size_height, Gender_1 == "F" | Gender_2 ==
+                           "F", select = c(Shoe_Size_1, Height_1, Shoe_Size_2, Height_2))
+
+print("Females Subset:")
+print(females_subset)
 ```
 
 ```{r 1c}
-mean(SHOE$`Shoe Size...1`)
-mean(SHOE$Height...2)
+mean_shoe_size <- mean(c(Size_height$Shoe_Size_1, Size_height$Shoe_Size_2))
+mean_height <- mean(c(Size_height$Height_1, Size_height$Height_2))
+
+mean_shoe_size
+mean_height
+
+cat("Mean Shoe Size:", mean_shoe_size, "\n")
+cat("Mean Height:", mean_height, "\n")
 ```
 
 ```{r 1d}
@@ -39,7 +56,9 @@ mean(SHOE$Height...2)
 ```{r 2}
 months_vector <- c("March","April","January","November","January",
 "September","October","September","November","August",
-"January","November","November","February","May","August", "July","December","August","August","September","November","February",
+
+"January","November","November","February","May","August", "July","December","August","August",
+"September","November","February",
 "April")
 
 factor_months <- factor(months_vector)
@@ -54,38 +73,183 @@ print(factor_months_vector)
 ```{r 3}
 summary(months_vector)
 summary(factor_months_vector)
-#Yes of course, so it is easy accessible the data basic information of the table given such as; its length, class, mode, and how many are the each elements.
+#Yes of course, so it is easy accessible the data basic information of the table given such as; 
+#its length, class, mode, and how many are the each elements.
 ```
 
 ```{r 4}
-factor_data <- 
-new_order_data <- factor(factor_data,levels = c("East","West","North"))
+direction_vector <- c("East", "West", "West", "West", "West", "North", "North", "North")
+
+factor_data <- factor(direction_vector)
+
+new_order_data <- factor(factor_data, levels = c("East", "West", "North"))
+
 print(new_order_data)
 ```
 
+
 ```{r 5}
-read.csv("import_march.csv")
-read.table("import_march.csv", header = TRUE, sep = ",", qoute = "\"", dec = ".", fill = TRUE)
-##NOT YET DONE!
+file_path <- "import_march.csv"
+data <- read.table(file_path, header = TRUE, sep = ",")
+print(data)
+#the 'read' function isn't working on this R script.
 ```
 
-```{r }
-number <- 1:50
-readline(prompt = "Enter a number from 1-50: ", number)
-if (number <= 50){
-  cat("TRUE - ", number)
-} else if (number > 50){
-  cat('“The number selected is beyond the range of 1 to 50”')
-} else {
-  print("Invalid Input")
+
+```{r 6}
+#number <- 1:50
+#chosen <- as.integer(readline(prompt = "Enter a number 1-50: "))
+#chosen
+
+
+#if (chosen >= 1 && chosen <= 50) {
+#  cat("TRUE\n")
+#} else{
+#  cat("The number you entered", chosen, "is beyond the expected.")
+#}
+
+#result
+
+## > chosen <- as.integer(readline(prompt = "Enter a number 1-50: "))
+##Enter a number 1-50: 50
+##> chosen <- as.integer(readline(prompt = "Enter a number 1-50: "))
+##Enter a number 1-50: 50
+##> sen >= 1 && chosen <= 50) {
+##Error: unexpected ')' in "sen >= 1 && chosen <= 50)"
+##> if (chosen >= 1 && chosen <= 50) {
+##+   cat("TRUE\n")
+##+ } else{
+##+   cat("The number you entered", chosen, "is beyond the ##expected.")
+##+ }
+##TRUE
+
+#>>> I made this code as a comment since it cant be knitted
+#>> when using a readline.
+```
+
+
+```{r 7}
+minimum_bills <- function(price) {
+  bill_denominations <- c(1000, 500, 200, 100, 50)
+  total_bills <- 0
+  
+  if (price %% 50 == 0) {
+    for (bill in bill_denominations) {
+      bill_count <- price %/% bill
+      total_bills <- total_bills + bill_count
+      price <- price %% bill
+    }
+    
+    cat("Minimum number of bills needed: ", total_bills, "\n")
+  } else {
+    cat("Price must be divisible by 50\n")
+  }
+}
+
+price_of_snack <- 1350  
+minimum_bills(price_of_snack)
+```
+
+```{r 7.2}
+min_bills <- function(price) {
+  bills <- c(500, 200, 100, 50)
+
+  num_bills <- 0
+
+
+  for (bill in bills) {
+    while (price >= bill) {
+      price <- price - bill
+      
+      num_bills <- num_bills + 1
+    }
+  }
+
+  return(num_bills)
+}
+
+price <- sample(1000:5000, size = 1)
+
+num_bills <- min_bills(price)
+
+print(num_bills)
+
+```
+
+
+```{r 8a(possible)}
+data <- data.frame(
+  NAME = c("Annie", "Thea", "Steve", "Hanna"),
+  Grade1 = c(85, 65, 75, 95),
+  Grade2 = c(65, 75, 55, 75),
+  Grade3 = c(85, 90, 80, 100),
+  Grade4 = c(100, 90, 85, 90)
+)
+data$AvgMathScore <- (data$Grade1 + data$Grade2 + data$Grade3 + data$Grade4) / 4
+
+students_over_90 <- data[data$AvgMathScore > 90, ]
+students_over_90
+```
+
+```{r 8a-b}
+data <- data.frame(
+  NAME = c("Annie", "Thea", "Steve", "Hanna"),
+  Grade1 = c(85, 65, 75, 95),
+  Grade2 = c(65, 75, 55, 75),
+  Grade3 = c(85, 90, 80, 100),
+  Grade4 = c(100, 90, 85, 90)
+)
+data$AvgMathScore <- (data$Grade1 + data$Grade2 + data$Grade3 + data$Grade4) / 4
+
+#ANNIE
+
+Annie_Ave <- data[data$NAME == "Annie", "AvgMathScore"]
+
+Annie_Ave
+
+
+#THEA
+
+Thea_Ave <- data[data$NAME == "Thea", "AvgMathScore"]
+
+Thea_Ave
+
+#STEVE
+
+Steve_Ave <- data[data$NAME == "Steve", "AvgMathScore"]
+
+Steve_Ave
+
+
+#HANNA
+
+Hanna_Ave <- data[data$NAME == "Hanna", "AvgMathScore"]
+
+Hanna_Ave
+
+```
+
+
+```{r 8c}
+data <- data.frame(
+  NAME = c("Annie", "Thea", "Steve", "Hanna"),
+  Grade1 = c(85, 65, 75, 95),
+  Grade2 = c(65, 75, 55, 75),
+  Grade3 = c(85, 90, 80, 100),
+  Grade4 = c(100, 90, 85, 90)
+)
+
+data$AvgScore <- (data$Grade1 + data$Grade2 + data$Grade3 + data$Grade4) / 4
+
+students_below_80 <- data[data$AvgScore < 80, ]
+students_below_80
+```
+
+```{r 8d}
+students <- c("Annie", "Thea", "Steve", "Hanna")
+
+for (student in students) {
+  max_score <- max(data[data$NAME == student, 2:5])
+  cat(student, "Max Score:", max_score, "\n")
 }
 ```
-
-
-
-
-
-
-
-
-
