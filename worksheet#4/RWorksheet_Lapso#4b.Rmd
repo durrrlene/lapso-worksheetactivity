@@ -1,0 +1,92 @@
+---
+title: "RWorksheet_Lapso#4b.Rmd"
+author: "DARLENE ERL LAPSO"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r 1}
+vectorA <- c(1,2,3,4,5)
+matzero_A <- matrix(0, nrow = 5, ncol = 5)
+
+mat_A <- matzero_A
+for(i in 1:5) {
+  for (j in 1:5) {
+  mat_A[i, j] <- abs(vectorA[i] - vectorA[j])
+  }
+}
+
+print(mat_A)
+```
+
+
+``` {r 2}
+n <- 5
+for (i in 1:n) {
+  for (i in 1:i) {
+    cat("* ")
+  }
+  cat("\n")
+}
+```
+
+```{r 3}
+pos_int <- function(prompt) {
+  repeat {
+    input <- as.integer(readline(prompt))
+    if (!is.na(input) && input > 0) {
+      return(input)
+    } else {
+      cat("Please enter a valid positive integer.\n")
+    }
+  }
+}
+
+n <- pos_int("Enter the starting number for the Fibonacci sequence: ")
+
+a <- 0
+b <- 1
+ cat("Fibonacci sequence starting from", n, "and up to 500:\n")
+repeat {
+  if (a >= n) {
+    cat(a, " ")
+  }
+  c <- a + b
+  a <- b
+  b <- c
+  if (a > 500) {
+    break
+  }
+}
+```
+
+```{r 4}
+shoe <- read.csv("SHOE - Sheet1.csv")
+
+head(shoe, 6)
+
+```
+
+
+```{r 5}
+DelaCruz <- c(60, 10, 5, 25)
+  pie(DelaCruz, 
+      main = "Dela Cruz's Monthly Income",
+      col = rainbow(length(DelaCruz)),
+      labels = c("Food", "Electricity", "Savings", "Miscellaneous"))
+```
+
+
+```{r 6}
+data(iris)
+```
+
+
+
+
+
+
+
+
+
+
