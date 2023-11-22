@@ -1,0 +1,195 @@
+---
+title: "RWorksheet_Lapso4b.rmd"
+author: "Darlene Erl Lapso"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+---
+title: "RWorksheet_Lapso#4b.Rmd"
+author: "DARLENE ERL LAPSO"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r 1}
+vectorA <- c(1,2,3,4,5)
+matzero_A <- matrix(0, nrow = 5, ncol = 5)
+
+mat_A <- matzero_A
+for(i in 1:5) {
+  for (j in 1:5) {
+  mat_A[i, j] <- abs(vectorA[i] - vectorA[j])
+  }
+}
+
+print(mat_A)
+```
+
+
+``` {r 2}
+n <- 5
+for (i in 1:n) {
+  for (i in 1:i) {
+    cat("* ")
+  }
+  cat("\n")
+}
+```
+
+```{r 3}
+pos_int <- function(prompt) {
+  repeat {
+    input <- as.integer(readline(prompt))
+    if (!is.na(input) && input > 0) {
+      return(input)
+    } else {
+      cat("Please enter a valid positive integer.\n")
+    }
+  }
+}
+
+n <- pos_int("Enter the starting number for the Fibonacci sequence: ")
+
+a <- 0
+b <- 1
+ cat("Fibonacci sequence starting from", n, "and up to 500:\n")
+repeat {
+  if (a >= n) {
+    cat(a, " ")
+  }
+  c <- a + b
+  a <- b
+  b <- c
+  if (a > 500) {
+    break
+  }
+}
+```
+
+```{r 4}
+install.packages("readxl")
+library(readxl)
+shoe <- read_excel("SHOE.xlsx")
+shoe
+
+head(shoe, 6)
+maleSub <- subset(shoe, Gender...3  == "M")
+femaleSub <- subset(shoe, Gender...3  == "F")
+
+Male <- nrow(maleSubset)
+Female <- nrow(femaleSubset)
+
+cat("Number of observations of Male in Gender...3 is: ", Male, "\n")
+cat("Number of observations of Female in Gender...3 is: ", Female, "\n")
+```
+
+
+```{r 5}
+DelaCruz <- c(60, 10, 5, 25)
+  pie(DelaCruz, 
+      main = "Dela Cruz's Monthly Income",
+      col = rainbow(length(DelaCruz)),
+      labels = c("Food", "Electricity", "Savings", "Miscellaneous"))
+```
+
+
+```{r 6a}
+data(iris)
+iris
+View(iris)
+str(iris)
+```
+
+```{r 6b}
+sl <- mean(iris$Sepal.Length)
+sw <- mean(iris$Sepal.Width)
+pl <- mean(iris$Petal.Length)
+pw <- mean(iris$Petal.Width)
+
+sl
+sw
+pl
+pw
+```
+
+```{r 6c}
+pie(table(iris$Species), main = "Species Distribution", col = rainbow(3), labels = levels(iris$Species))
+```
+
+```{r 6d}
+setosaSub <- tail(subset(iris, Species == "setosa"), 6)
+versicolorSub <- tail(subset(iris, Species == "versicolor"), 6)
+virginicaSub <- tail(subset(iris, Species == "virginica"), 6)
+setosaSub
+versicolorSub
+virginicaSub
+```
+
+```{r 6e}
+iris$Species<- as.factor(iris$Species)
+plot(iris$Sepal.Length,iris$Sepal.Width,pch = as.integer(iris$Species),col = as.integer(iris$Species), main = "Iris Dataset", sub = "Sepal Width and Length", xlab = "Sepal Length", ylab = "Sepal width")
+```
+
+the provided code successfully creates subsets for the Male and Female categories in the data set. Additionally, it demonstrates how to use R to analyze the data and interpret the results. The findings suggest that the data set may have more data on male individuals than female individuals and that the iris species can be distinguished by the length and width of their sepal and petal attributes.
+
+
+```{r 7}
+install.packages("readxl")
+library(readxl)
+alexa <- read_excel("alexa_file.xlsx")
+print(alexa)
+
+alexa$variation <- gsub(" Black", "Blue", alexa$variation)
+alexa$variation <- gsub(" White", "Yellow", alexa$variation)
+
+View(alexa)
+```
+
+```{r 7snip}
+knitr::include_graphics("alexa_file.xlsx")
+```
+
+```{r 7b}
+library(readxl)
+library(dplyr)
+
+original_data <- read.xlsx("alexa_file.xlsx")
+
+variations <- original_data %>%
+  count(original_data$variation)
+
+save(variations, file = "variations.RData")
+```
+
+```{r 7c}
+# Load the necessary libraries
+install.packages("ggplot2")
+library(ggplot2)
+
+# Load the data from the renamed RData file
+load("variations.RData")
+
+x <- c("Black", "Black Plus", "Black Show", "Black Spot", "Black Dot")
+y <- c(0, 100, 200, 400, 500)
+
+#barplot(y, x, main = "Black Variants", xlab = NULL, ylab = "Variants", col = c("#000000", "#ff69b4", "#32cd32", "#87ceeb", "#43a047"))
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
