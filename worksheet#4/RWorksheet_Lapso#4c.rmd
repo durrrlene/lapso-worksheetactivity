@@ -5,6 +5,15 @@ date: "`r Sys.Date()`"
 output:
   pdf_document: default
   html_document: default
+---
+
+---
+title: "RWorksheet_Lapso4c.Rmd"
+author: "Darlene Erl Lapso"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
 editor_options: 
   markdown: 
     wrap: 72
@@ -228,7 +237,6 @@ traffic <- read.csv("D:/darlene/CS101/traffic.csv", header = TRUE, sep = ",")
 traffic
 View(traffic)
 ```
-
 
 a. How many numbers of observation does it have? What are the variables of the traffic dataset the Show
 your answer.
