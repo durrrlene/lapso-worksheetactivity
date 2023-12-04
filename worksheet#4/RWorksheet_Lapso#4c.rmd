@@ -133,10 +133,9 @@ different geom graph.
 ```{r}
 library(ggplot2)
 top_20 <- head(mpg, 20)
-ggplot(top_20, aes(x = model, y = year)) +
+ggplot(top_20, aes(x = year, y = model)) +
   geom_point() +
-  labs(x = "Model", y = "Year",
-       title = "Relationship between Model and Year (Top 20)")
+  labs(x = "Year", y = "Model", title = "Top 20 Observations: Model vs Year")
 ```
 
 ------------------------------------------------------------------------
