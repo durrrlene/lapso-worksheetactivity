@@ -234,7 +234,6 @@ getwd
 setwd("C:/Users/steve/Documents/lapso-worksheetactivity/worksheet#4")
 traffic <- read.csv("D:/darlene/CS101/traffic.csv", header = TRUE, sep = ",")
 traffic
-View(traffic)
 ```
 
 a. How many numbers of observation does it have? What are the variables of the traffic dataset the Show
@@ -262,8 +261,6 @@ ggplot(Junc_subset, aes(x = Junction, y = Vehicles, group = Junction, color = Ju
 ```{r}
 library(readxl)
 alexa <- read_excel("alexa_file.xlsx")
-
-View(alexa)
 
 ```
 
