@@ -1,0 +1,90 @@
+---
+title: "RWorksheet_5.rmd"
+author: "Darlene Erl Lapso"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+---
+
+
+1. Create a data frame for the table below. Show your solution.
+a. Compute the descriptive statistics using different packages (Hmisc and pastecs).
+Write the codes and its result.
+```{r}
+library(Hmisc)
+library(pastecs)
+studentData<- data.frame(
+  Student <- c(1:10),
+  preTest <- c(55,54,47,57,51,61,57,54,63,58),
+  postTest <- c(61,60,56,63,56,63,59,56,62,61))
+
+colnames(studentData) <- c("Student", "Pre-Test","Post-Test")
+studentData
+```
+
+2. The Department of Agriculture was studying the effects of several levels of a fertilizer on the growth of a plant. For some analyses, it might be useful to convert the fertilizer levels to an ordered factor.
+```{r}
+fertLevels <- c(10,10,10, 20,20,50,10,20,10,50,20,50,20,10.)
+ordered(fertLevels)
+```
+
+3. Abdul Hassan, president of Floor Coverings Unlimited, has asked you to study the exercise levels undertaken by 10 subjects were “l”, “n”, “n”, “i”, “l” , “l”, “n”, “n”, “i”, “l” ; n=none, l=light, i=intense.
+```{r}
+exLevels <- c("l", "n", "n", "i", "l", "l", "n", "n", "i", "l")
+factor_exLevels<- factor(exLevels)
+levels(factor_exLevels) <- c("none","light","intense")
+factor_exLevels
+```
+
+4a.a. Apply the factor function and factor level. Describe the results.
+```{r}
+state <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
+"vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
+"wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
+"vic", "vic", "act")
+statef<-factor(state)
+levels(statef) 
+statef
+```
+
+5. From #4 - continuation:
+• Suppose we have the incomes of the same tax accountants in another vector (in suitably large units of money).
+```{r}
+incomes <- c(60, 49, 40, 61, 64, 60, 59, 54,
+             62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
+             65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+
+incmeans <- tapply(incomes, statef, mean)
+incmeans
+
+data <- data.frame(State = statef, Income = incomes)
+data
+```
+b. Copy the results and interpret
+     act      nsw       nt      qld       sa      tas 
+44.50000 57.33333 55.50000 53.60000 55.00000 60.50000 
+     vic       wa 
+56.00000 52.25000 
+
+This result shows the average income of the different/individual states in Australia
+
+------------------
+
+6.Calculate the standard errors of the state income means (refer again to number 3)
+
+```{r}
+stdError <- function(x) sqrt(var(x) / length(x))
+incster <- tapply(incomes, statef, stdError)
+
+incster
+```
+ b, Interpret the result
+ 
+ The standard error of the state incomes mean of different states, 
+ 
+ 
+ 
+ 
+ 
+ 
