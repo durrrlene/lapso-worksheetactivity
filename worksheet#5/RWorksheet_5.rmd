@@ -2,7 +2,9 @@
 title: "RWorksheet_5.rmd"
 author: "Darlene Erl Lapso"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ---
@@ -67,7 +69,7 @@ b. Copy the results and interpret
      vic       wa 
 56.00000 52.25000 
 
-This result shows the average income of the different/individual states in Australia
+This result shows the average income of the different/individual states in Australia.
 
 ------------------
 
@@ -82,9 +84,126 @@ incster
  b, Interpret the result
  
  The standard error of the state incomes mean of different states, 
- 
- 
- 
- 
+
+
+#On this dataset, the "Titanic" data is not available on the version of my RStudio, 
+#therefore I downloaded a .csv file from the internet. Link where I get the 'Titanic.csv': https://github.com/datasciencedojo/datasets/blob/master/titanic.csv
+
+7. Use the titanic dataset.
+a. subset the titatic dataset of those who survived and not survived. Show the codes and its result.
+```{r}
+library(readr)
+titanic <- read_csv("C:/Users/steve/Documents/lapso-worksheetactivity/worksheet#5/titanic.csv")
+View(titanic)
+```
+
+```{r}
+survived_passengers <- subset(titanic, Survived == "1")
+head(survived_passengers)
+```
+
+```{r}
+not_survived_passengers <- subset(titanic, Survived == 0)
+head(not_survived_passengers)
+```
+
+8. The data sets are about the breast cancer Wisconsin. The samples arrive periodically
+as Dr. Wolberg reports his clinical cases. The database therefore reflects this
+chronologihttps://drive.google.com/file/d/16MFLoehCgx2MJuNSAuB2CsBy6eDIIru/view?usp=drive_link)
+
+```{r}
+breastCancer <- read_csv("C:/Users/steve/Documents/lapso-worksheetactivity/worksheet#5/breastcancer_wisconsin.csv")
+breastCancer
+
+str(breastCancer)
+```
+a. describe what is the dataset all about.
+
+The 'BreastCancer.csv' file shows the different quantity form and what can be found on a cyst of a cancer patient. 
+
+
+d. Compute the descriptive statistics using different packages. Find the values of:
+
+d.1 Standard error of the mean for clump thickness.
+```{r}
+clump_thickness <- breastCancer$clump_thickness
+
+stEclump_thickness <- sd(clump_thickness) / sqrt(length(clump_thickness))
+stEclump_thickness
+```
+
+d.2 Coefficient of variability for Marginal Adhesion.
+
+```{r}
+marginal_adhesion <- breastCancer$marginal_adhesion
+
+coefVar_margAd <- (sd(marginal_adhesion) / mean(marginal_adhesion)) * 100
+coefVar_margAd
+```
+d.3 Number of null values of Bare Nuclei.
+```{r}
+bareNucNULLS <- sum(is.na(breastCancer$bare_nucleoli))
+bareNucNULLS
+```
+#[1] 15 I do not know why the result is 15, when I check the data, the 'bare_nucleoli' does
+#not contain any NULL values.
+
+d.4 Mean and standard deviation for Bland Chromatin
+#mean
+```{r}
+blandChrom <- breastCancer$bland_chromatin
+Mean_blandChrom <- mean(blandChrom)
+Mean_blandChrom
+```
+
+#standard dev
+```{r}
+stdDev_blandChrom <- sd(blandChrom)
+stdDev_blandChrom
+```
+
+d.5 Confidence interval of the mean for Uniformity of Cell Shape
+```{r}
+shapeUniformity <- breastCancer$shape_uniformity
+
+confidenceInt_shapeUniformity <- t.test(shapeUniformity)$conf.int
+confidenceInt_shapeUniformity
+```
+
+d. How many attributes?
+```{r}
+str(breastCancer) #one of my knowledge to get the attributes is by using the str() function.
+```
+#or
+```{r}
+BC_attributes <- ncol(breastCancer)
+BC_attributes
+```
+
+9. Export the data abalone to the Microsoft excel file. Copy the codes.
+install.packages("AppliedPredictiveModeling")
+library("AppliedPredictiveModeling")
+view(abalone)
+head(abalone)
+summary(abalone)
+
+#As I install the 'install.packages("AppliedPredictingModeling")' it says that
+#the package is not available on the R Version I have. Therefore, once again, I downloaded
+#a file from the internet so I can gather data, as what the worksheet asking for our activity.
+
+```{r}
+library(readr)
+abalone <- read_csv("C:/Users/steve/Documents/lapso-worksheetactivity/worksheet#5/abalone.csv")
+```
+
+```{r}
+head(abalone)
+```
+
+```{r}
+summary(abalone)
+```
+
+
  
  
