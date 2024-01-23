@@ -6,6 +6,11 @@ library(stringr)
 library(dplyr)
 library(polite)
 
+session <- bow(url,
+               user_agent = "Educational")
+session
+
+
 
 ####################################### ART CATEGORY #####################################################
 
@@ -107,4 +112,7 @@ combined_Reviews <- rbind(art_Reviews, fash_Reviews)
 
 dim(combined_Reviews)
 View(combined_Reviews)
+
+
+write.csv(combined_Reviews, file = "combined_reviews.csv", row.names = FALSE)
 
